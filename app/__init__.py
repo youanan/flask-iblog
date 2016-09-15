@@ -1,6 +1,7 @@
 from flask import Flask
 from views import bp
 from models import db
+from app.admin import create_admin
 
 
 def create_app():
@@ -9,6 +10,8 @@ def create_app():
 
     register_blueprints(app)
     register_database(app)
+
+    create_admin(app)
 
     return app
 
