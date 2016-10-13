@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask_mongoengine import MongoEngine
 from datetime import datetime
 

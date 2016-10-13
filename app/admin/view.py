@@ -10,4 +10,8 @@ class MyIndexView(AdminIndexView):
         return self.render('admin/my_master.html')
 
 class UserView(ModelView):
+    can_create = False
+    can_delete = False
+
+class PostView(ModelView):
     pass
