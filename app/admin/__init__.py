@@ -10,6 +10,6 @@ def create_admin(app=None):
                   index_view=MyIndexView(),
                   base_template='admin/my_master.html')
     admin.add_view(UserView(User, endpoint='users', name="UserList"))
-    admin.add_view(PostView(Post, endpoint='posts', name="PostList"))
+    admin.add_view(PostView(Post))
 
 
