@@ -11,6 +11,20 @@ class User(db.Document):
     email = db.StringField(max_length=64)
     description = db.StringField(max_length=1024)
 
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return str(self.id)
+
+    def __unicode__(self):
+        return self.name
 
 class Post(db.Document):
     title = db.StringField(required=True, max_length=64)

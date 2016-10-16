@@ -1,20 +1,40 @@
 # -*- coding:utf-8 -*-
-from flask_admin import AdminIndexView, expose
 from flask_admin.contrib.mongoengine import ModelView
 from wtforms import fields, widgets
+from flask_admin import AdminIndexView, expose
+from flask_login import current_user, login_user, logout_user
+from flask import redirect, url_for, request
+from forms import LoginForm
 
 
 class MyIndexView(AdminIndexView):
     '创建自定义视图'
     @expose('/')
     def index(self):
-        # return super(MyIndexView, self).index()
-        return self.render('admin/my_master.html')
+        if not current_user.is_authenticated():
+            return redirect(url_for('.login'))
+        return super(MyIndexView, self).index()
+
+
+    @expose('/login',methods=('get','post'))
+    def login(self):
+        form = LoginForm(request.form)
+        if request.method == 'post' and form.validate():
+            user = form.get_user()
+            login_user(user)
+            redirect(url_for('.index'))
+        self._template_args['form'] = form
+        return super(MyIndexView,self).index()
+
+
 
 
 class UserView(ModelView):
     can_create = False
     can_delete = False
+
+    def is_accessible(self):
+        return current_user.is_authenticated()
 
 
 # define wtforms widget and field
@@ -46,3 +66,6 @@ class PostView(ModelView):
         ]
     }
     column_filters = ('title',)
+
+    def is_accessible(self):
+        return current_user.is_authenticated()
