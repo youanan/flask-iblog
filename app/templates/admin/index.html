@@ -1,11 +1,11 @@
-{% extends 'admin/master.html' %}
+{% extends 'admin/base.html' %}
 {% block body %}
-{{ super() }}
-<div class="row-fluid">
+
+<div class="row-fluid" xmlns="http://www.w3.org/1999/html">
     <div>
         {% if current_user.is_authenticated() %}
-          <h1>CleanBlog Admin</h1>
-          <p>This is the backend of CleanBlog.</p>
+          <h1>Welcome to iBlog Admin,<span style="color: #9C1A1C">{{ current_user }}!</span> </h1>
+          <p>This is the backend of iBlog.</p>
           <p>You can operate all posts here</p>
         {% else %}
           <form method="POST" action="">
@@ -28,7 +28,22 @@
           {{ link | safe }}
         {% endif %}
     </div>
+    {% if current_user.is_authenticated() %}
+        <div class="btn-group pull-right">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i>{{ current_user.login }} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+              <li>
+                  <a href="{{ url_for('admin.logout_view') }}">Log out</a>
+              </li>
+          </ul>
 
-    <a class="btn btn-primary" href="/"><i class="icon-arrow-left icon-white"></i> Back</a>
+
+        </div>
+
+    {% endif %}
+
+    <!--a class="btn btn-primary" href="/"><i class="icon-arrow-left icon-white"></i> Back</a -->
 </div>
 {% endblock body %}

@@ -2,7 +2,7 @@
 from flask_admin.contrib.mongoengine import ModelView
 from wtforms import fields, widgets
 from flask_admin import AdminIndexView, expose
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from flask import redirect, url_for, request
 from forms import LoginForm
 
@@ -15,17 +15,20 @@ class MyIndexView(AdminIndexView):
             return redirect(url_for('.login'))
         return super(MyIndexView, self).index()
 
-
-    @expose('/login',methods=('get','post'))
+    @expose('/login', methods=('GET', 'POST'))
     def login(self):
         form = LoginForm(request.form)
-        if request.method == 'post' and form.validate():
+        if request.method == 'POST' and form.validate():
             user = form.get_user()
             login_user(user)
             redirect(url_for('.index'))
         self._template_args['form'] = form
-        return super(MyIndexView,self).index()
+        return super(MyIndexView, self).index()
 
+    @expose('/logout/')
+    def logout_view(self):
+        logout_user()
+        return redirect(url_for('.index'))
 
 
 
