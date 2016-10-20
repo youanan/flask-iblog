@@ -34,3 +34,10 @@ class Post(db.Document):
     status = db.IntField(required=True)
     create_time = db.DateTimeField(default=datetime.now)
     modify_time = db.DateTimeField(default=datetime.now)
+
+    def __unicode__(self):
+        return self.title
+
+    meta = {
+        'ordering': ['-create_time']
+    }
