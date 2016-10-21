@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if posts %}
+     {% for post in posts %}
+        <div class="post-preview">
+            <a href="/posts/{{ post.id }}">
+                <h2 class="post-tile">{{ post.title }}</h2>
+            </a>
+        {% if post.tags %}
+            <span>Tags:&nbsp;</span>
+            {% for tag in post.tags %}
+                <span class="lable label-info">
+                {{ tag }}
+                </span>&nbsp;
+            {% endfor %}
+        {% endif %}
+        <p class="post-meta">
+            Posted by <a href="#">{{ post.author.name }}</a> on {{ post.create_time }}
+        </p>
+        </div>
+         <hr>
+     {% endfor %}
+   {% else %}
+      <h1>Welcome to iBlog</h1>
+  {% endif %}
+{% endblock content %}
