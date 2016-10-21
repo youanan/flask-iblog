@@ -21,7 +21,7 @@ screenshot:
 ![index](https://github.com/youanan/flask-iblog/blob/master/screenshot/admin_04.png)
 
 - 后台管理登陆界面:
-![index](https://github.com/youanan/flask-iblog/blob/master/screenshot/iblog_index_01.png)
+![index](https://github.com/youanan/flask-iblog/blob/master/screenshot/admin_login_01.png)
 
 - 后台管理登陆密码验证界面:
-![index](https://github.com/youanan/flask-iblog/blob/master/screenshot/iblog_index_01.png)
+![index](https://github.com/youanan/flask-iblog/blob/master/screenshot/admin_login_02.png)
