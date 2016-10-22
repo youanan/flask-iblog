@@ -12,13 +12,16 @@
     <title>i Blog</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="static/001/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/001/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="static/001/css/clean-blog.min.css" rel="stylesheet">
+    <link href="../static/001/css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- highlight css -->
+    <link href="../static/js/lib/highlight/styles/solarized-dark.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="static/001/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/001/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -52,7 +55,7 @@
                         <a href="{{ url_for('blog.index') }}">Home</a>
                     </li>
                     <li>
-                        <a href="#">Admin</a>
+                        <a href="/admin">Admin</a>
                     </li>
 
                 </ul>
@@ -64,15 +67,17 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('static/001/img/home-bg.jpg')">
+    <header class="intro-header" style="background-image: {% block bgurl %}url('../static/001/img/home-bg.jpg'){% endblock %}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    {% block header %}
                     <div class="site-heading">
                         <h1>Flask iBlog</h1>
                         <hr class="small">
                         <span class="subheading">A Flask iBlog by Youanan</span>
                     </div>
+                    {% endblock header %}
                 </div>
             </div>
         </div>
@@ -129,17 +134,27 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="static/001/vendor/jquery/jquery.js"></script>
+    <script src="../static/001/vendor/jquery/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="static/001/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/001/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="static/001/js/jqBootstrapValidation.js"></script>
-    <script src="static/001/js/contact_me.js"></script>
+    <script src="../static/001/js/jqBootstrapValidation.js"></script>
+    <script src="../static/001/js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="static/001/js/clean-blog.min.js"></script>
+    <script src="../static/001/js/clean-blog.min.js"></script>
+
+    <!-- highlight javascript -->
+    <script src="../static/js/lib/highlight/highlight.pack.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('pre code').each(function(i, block){
+                hljs.highlightBlock(block);
+            });
+        });
+    </script>
 
 </body>
 

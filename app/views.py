@@ -13,3 +13,7 @@ def index(page=1):
     return render_template("index.html", paginator=paginator)
 
 
+@bp.route('/posts/<string:post_id>')
+def get_post(post_id):
+    post = Post.objects(id=post_id).first()
+    return render_template("post.html", post=post)
