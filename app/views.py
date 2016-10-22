@@ -7,8 +7,9 @@ bp = Blueprint('blog', __name__)
 
 
 @bp.route('/')
-def index():
-    posts = Post.objects.all()
-    return render_template("index.html", posts=posts)
+@bp.route('/<int:page>')
+def index(page=1):
+    paginator = Post.objects.paginate(page=page, per_page=5)
+    return render_template("index.html", paginator=paginator)
 
 

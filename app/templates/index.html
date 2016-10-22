@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-  {% if posts %}
-     {% for post in posts %}
+  {% if paginator.iter_pages() %}
+     {% for post in paginator.items %}
         <div class="post-preview">
             <a href="/posts/{{ post.id }}">
                 <h2 class="post-tile">{{ post.title }}</h2>
@@ -23,4 +23,26 @@
    {% else %}
       <h1>Welcome to iBlog</h1>
   {% endif %}
+    <!-- Pager -->
+    <ul class="pager">
+      {% if paginator.has_prev %}
+        <li class="previous">
+            <a href="{{ url_for('blog.index') }}{{ paginator.pre_num }}">&larr; Newer Posts</a>
+        </li>
+      {% else %}
+        <li class="previous disabled">
+            <a href="#">&larr; Newer Posts</a>
+        </li>
+      {% endif %}
+
+    {% if paginator.has_next %}
+      <li class="next">
+          <a href="{{ url_for('blog.index') }}{{ paginator.next_num }}">Older Posts &rarr;</a>
+      </li>
+    {% else %}
+      <li class="next disabled">
+          <a href="#">Older Posts &rarr;</a>
+      </li>
+    {% endif %}
+    </ul>
 {% endblock content %}
