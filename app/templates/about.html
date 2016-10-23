@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block bgurl %}
+    url('../static/001/img/post-bg.jpg')
+{% endblock %}
+{% block header %}
+<div class="post-heading">
+   <h1>{{ post.title }}</h1>
+    <hr class="small">
+        {% if post.tags %}
+            <span>Tags:&nbsp;</span>
+            {% for tag in post.tags %}
+                <span class="lable label-info">
+                {{ tag }}
+                </span>&nbsp;
+            {% endfor %}
+        {% endif %}
+        <p class="post-meta">
+            Posted by <a href="#">{{ post.author.name }}</a> on {{ post.create_time | my_format_datetime }}
+        </p>
+</div>
+{% endblock header %}
+{% block content %}
+  {{ post.content | safe }}
+{% endblock content %}
