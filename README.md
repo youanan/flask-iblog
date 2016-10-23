@@ -2,6 +2,7 @@
 python,flask,MongoDB
 ----
 - 2016.10.21 完成前端首页的CSS美化
+- 2016.10.22 完成分页、POST页面、及代码高亮显示功能。
 
 ----
 screenshot:
